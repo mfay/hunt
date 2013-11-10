@@ -1,7 +1,13 @@
-var express = require('express');
-var http = require('http');
-var app = express();
-var config = require('./config/config');
+var express = require('express'),
+	http = require('http'),
+	app = express(),
+	config = require('./config/config'),
+	fs = require('fs');
+
+var models_path = __dirname + '/app/models'
+fs.readdirSync(models_path).forEach(function (file) {
+	if (~file.indexOf('.js')) require(models_path + '/' + file)
+})
 
 require('./config/express')(app, config);
 
