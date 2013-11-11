@@ -10,7 +10,7 @@ module.exports = function (app, config) {
 	app.use(express.logger('dev'));
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
-	app.use(express.cookieParser('654654263FDDASFA6S5'));
+	app.use(express.cookieParser(process.env.COOKIE_SECRET || '654654263FDDASFA6S5'));
 	app.use(express.session());
 	app.use(app.router);
 	app.use(express.static(config.root + '/public'));

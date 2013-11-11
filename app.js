@@ -2,7 +2,10 @@ var express = require('express'),
 	http = require('http'),
 	app = express(),
 	config = require('./config/config'),
-	fs = require('fs');
+	fs = require('fs'),
+	mongoose = require('mongoose');
+
+mongoose.connect(process.env.MONGOLAB_URI);
 
 var models_path = __dirname + '/app/models'
 fs.readdirSync(models_path).forEach(function (file) {

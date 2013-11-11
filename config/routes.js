@@ -5,4 +5,5 @@ var auth = require('../app/middleware/authorization');
 module.exports = function(app) {
 	app.get('/', routes.index);
 	app.get('/users', auth.requiresLogin, user.list);
+	app.get('/admin/new', user.admin);
 }
