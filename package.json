@@ -9,6 +9,8 @@
     "express": "3.4.3",
     "jade": "*",
     "mongoose": "~3.8.0",
-    "passport": "~0.1.17"
+    "passport": "~0.1.17",
+    "passport-local": "~0.1.6",
+    "jake": "~0.7.3"
   }
 }

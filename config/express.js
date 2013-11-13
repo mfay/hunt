@@ -1,7 +1,7 @@
 var express = require("express");
 var path = require('path');
 
-module.exports = function (app, config) {
+module.exports = function (app, config, passport) {
 	// all environments
 	app.set('port', process.env.PORT || 3000);
 	app.set('views', config.root + '/app/views');
@@ -12,6 +12,8 @@ module.exports = function (app, config) {
 	app.use(express.methodOverride());
 	app.use(express.cookieParser(process.env.COOKIE_SECRET || '654654263FDDASFA6S5'));
 	app.use(express.session());
+	app.use(passport.initialize());
+	app.use(passport.session());
 	app.use(app.router);
 	app.use(express.static(config.root + '/public'));
 

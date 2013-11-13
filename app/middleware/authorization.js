@@ -1,7 +1,7 @@
 exports.requiresLogin = function(req, res, next) {
-	if (req.admin === undefined) {
+	if (!req.isAuthenticated()) {
 		req.session.returnTo = req.originalUrl;
-		return res.redirect('login');
+		return res.redirect('/user/login');
 	}
 	next();
 };

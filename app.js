@@ -3,7 +3,8 @@ var express = require('express'),
 	app = express(),
 	config = require('./config/config'),
 	fs = require('fs'),
-	mongoose = require('mongoose');
+	mongoose = require('mongoose'),
+	passport = require('passport');
 
 mongoose.connect(process.env.MONGOLAB_URI);
 
@@ -12,9 +13,11 @@ fs.readdirSync(models_path).forEach(function (file) {
 	if (~file.indexOf('.js')) require(models_path + '/' + file)
 })
 
-require('./config/express')(app, config);
+require('./config/passport')(passport, config);
 
-require('./config/routes')(app);
+require('./config/express')(app, config, passport);
+
+require('./config/routes')(app, passport);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
